@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghavendra N O — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0A0F;
+    --surface: #131319;
+    --surface-2: #1A1A22;
+    --line: #26262F;
+    --text: #F5F5F7;
+    --text-dim: #9B9BB0;
+    --indigo: #7C7FFF;
+    --teal: #4FD1C5;
+    --radius: 10px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  ::selection{ background: var(--indigo); color: #fff; }
+  :focus-visible{ outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  h1,h2,h3{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .wrap{ max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--indigo);
+  }
+  .nav-links{ display: flex; gap: 34px; font-size: 14px; color: var(--text-dim); }
+  .nav-links a{ transition: color 0.2s; }
+  .nav-links a:hover{ color: var(--text); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 0 60px;
+  }
+  .pill{
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--indigo);
+    border: 1px solid rgba(124,127,255,0.4);
+    background: rgba(124,127,255,0.08);
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero-name{
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 1.05;
+    color: var(--text);
+  }
+  .hero-role{
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 1.05;
+    margin-bottom: 26px;
+    background: linear-gradient(90deg, var(--indigo), var(--teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-desc{
+    color: var(--text-dim);
+    max-width: 620px;
+    font-size: 17px;
+    margin-bottom: 36px;
+  }
+  .btn-row{ display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+  .btn{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 26px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  .btn-primary{ background: var(--indigo); color: #fff; }
+  .btn-primary:hover{ background: #6a6df0; transform: translateY(-2px); }
+  .btn-ghost{ border-color: var(--line); color: var(--text); background: transparent; }
+  .btn-ghost:hover{ border-color: var(--text-dim); }
+  .scroll-hint{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .scroll-hint::before{
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 100px 0; border-top: 1px solid var(--line); }
+  .eyebrow{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--indigo);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title{ font-size: clamp(28px, 4vw, 40px); margin-bottom: 52px; }
+
+  /* ABOUT */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .avatar-frame{
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, rgba(124,127,255,0.16), rgba(79,209,197,0.10));
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .about-text p{ color: var(--text-dim); margin-bottom: 18px; max-width: 640px; font-size: 15.5px; }
+  .about-text p b{ color: var(--text); font-weight: 600; }
+  .tag-row{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .tag{
+    font-size: 13px;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--text-dim);
+    background: var(--surface);
+  }
+
+  /* SKILLS */
+  .skills-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .skill-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+  }
+  .skill-card-head{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .skill-item{ padding: 9px 0; color: var(--text); font-size: 14.5px; border-bottom: 1px solid var(--line); }
+  .skill-item:last-child{ border-bottom: none; }
+
+  /* PROJECTS */
+  .project-card{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 20px;
+    background: var(--surface);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .project-card:hover{ border-color: var(--indigo); transform: translateY(-3px); }
+  .project-top{ display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 14px; flex-wrap: wrap; }
+  .project-kicker{ font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--indigo); text-transform: uppercase; display: block; margin-bottom: 8px; }
+  .project-name{ font-size: 21px; }
+  .project-links{ display: flex; gap: 10px; flex-shrink: 0; }
+  .project-links a{
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--text-dim);
+    transition: all 0.2s;
+  }
+  .project-links a:hover{ border-color: var(--teal); color: var(--teal); }
+  .project-desc{ color: var(--text-dim); font-size: 14.5px; max-width: 720px; margin-bottom: 20px; }
+  .stack-row{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-chip{
+    font-size: 12px;
+    padding: 6px 12px;
+    background: var(--surface-2);
+    border-radius: 6px;
+    color: var(--teal);
+  }
+
+  /* EDUCATION */
+  .timeline{ position: relative; padding-left: 30px; }
+  .timeline::before{ content:''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--line); }
+  .t-item{ position: relative; padding-bottom: 40px; }
+  .t-item:last-child{ padding-bottom: 0; }
+  .t-item::before{
+    content:'';
+    position: absolute; left: -30px; top: 4px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--indigo);
+  }
+  .t-head{ display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .t-title{ font-size: 17px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .t-meta{ font-size: 13px; color: var(--text-dim); }
+  .t-sub{ color: var(--text-dim); font-size: 14px; }
+  .t-score{ color: var(--teal); font-size: 13px; margin-top: 4px; font-weight: 600; }
+
+  /* CONTACT */
+  .contact-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 44px clamp(24px, 5vw, 56px);
+  }
+  .contact-lead{ color: var(--text-dim); max-width: 520px; margin-bottom: 34px; font-size: 15.5px; }
+  .contact-links{ display: grid; gap: 14px; max-width: 420px; }
+  .contact-link{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 18px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-link:hover{ border-color: var(--indigo); background: var(--surface-2); transform: translateX(4px); }
+  .contact-link .ic{ color: var(--teal); font-weight: 700; }
+
+  footer{
+    padding: 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--line);
+  }
+  footer span{ color: var(--indigo); font-weight: 600; }
+
+  @media (max-width: 800px){
+    .about-grid{ grid-template-columns: 1fr; }
+    .avatar-frame{ width: 120px; }
+    .skills-grid{ grid-template-columns: 1fr; }
+    .nav-links{ display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">RN.</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="top" style="border-top:none;">
+    <div class="wrap">
+      <span class="pill">OPEN TO OPPORTUNITIES</span>
+      <h1 class="hero-name">Raghavendra N O</h1>
+      <h1 class="hero-role">Software Developer.</h1>
+      <p class="hero-desc">Information Science undergraduate at EWIT · Building AI-powered web apps with React.js, Firebase, and Java. Based in Bengaluru 🇮🇳</p>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-primary">View my work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+      <div class="scroll-hint">Scroll to explore</div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow">who i am</div>
+      <h2 class="section-title">About me</h2>
+      <div class="about-grid">
+        <div class="avatar-frame">RN</div>
+        <div class="about-text">
+          <p>I'm an <b>Information Science undergraduate</b> passionate about Artificial Intelligence, Full-Stack Development, and Software Engineering. I'm experienced in building AI-powered web applications, including a dental diagnosis and clinic management platform, using React.js, Firebase, Java, and modern web technologies.</p>
+          <p>I'm enthusiastic about developing <b>intelligent, user-centric solutions</b> that solve real-world healthcare challenges through innovation and technology.</p>
+          <div class="tag-row">
+            <span class="tag">AI / ML</span>
+            <span class="tag">Full Stack</span>
+            <span class="tag">Healthcare Tech</span>
+            <span class="tag">Problem Solver</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow">what i know</div>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-head">Programming</div>
+          <div class="skill-item">Java</div>
+          <div class="skill-item">JavaScript</div>
+          <div class="skill-item">SQL</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-head">Frontend & Backend</div>
+          <div class="skill-item">React.js</div>
+          <div class="skill-item">HTML5 / CSS3</div>
+          <div class="skill-item">Firebase Authentication</div>
+          <div class="skill-item">Cloud Firestore</div>
+          <div class="skill-item">Firebase Storage</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-head">Database</div>
+          <div class="skill-item">MySQL</div>
+          <div class="skill-item">Cloud Firestore</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow">what i've built</div>
+      <h2 class="section-title">Projects</h2>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <span class="project-kicker">Healthcare · AI-Powered</span>
+            <h3 class="project-name">DentalAI — Dental Diagnosis &amp; Clinic Management</h3>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/raaghuno18-spec" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">An AI-powered dental diagnosis and clinic management platform with role-based access for doctors, receptionists, and patients. Features AI-assisted intraoral image analysis, appointment scheduling, and patient records, built on Firebase Authentication, Firestore, and Storage, with responsive dashboards that streamline clinical workflows and support faster, AI-assisted decision-making.</p>
+        <div class="stack-row">
+          <span class="stack-chip">React.js</span><span class="stack-chip">JavaScript</span><span class="stack-chip">Firebase</span><span class="stack-chip">HTML</span><span class="stack-chip">CSS</span><span class="stack-chip">AI/ML</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <span class="project-kicker">Web · Automation</span>
+            <h3 class="project-name">Dairy Management System</h3>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/raaghuno18-spec" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">A web-based system to automate milk collection, customer management, billing, and inventory tracking. Includes secure user authentication, full CRUD operations for customers, suppliers, and products, and a MySQL-backed database for efficient storage and retrieval of dairy records and payment details.</p>
+        <div class="stack-row">
+          <span class="stack-chip">HTML</span><span class="stack-chip">CSS</span><span class="stack-chip">JavaScript</span><span class="stack-chip">PHP</span><span class="stack-chip">MySQL</span><span class="stack-chip">XAMPP</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <span class="project-kicker">Web · Travel Booking</span>
+            <h3 class="project-name">RR Travels — Multi-Mode Travel Booking Platform</h3>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/raaghuno18-spec" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <p class="project-desc">A unified travel booking platform integrating roadways, airways, and waterways into a single web application. Includes user registration and login, source-to-destination search, travel mode selection, and ticket booking workflows, with a responsive interface designed to simplify trip planning and provide a seamless passenger booking experience.</p>
+        <div class="stack-row">
+          <span class="stack-chip">HTML</span><span class="stack-chip">CSS</span><span class="stack-chip">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="eyebrow">my background</div>
+      <h2 class="section-title">Education</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-head">
+            <span class="t-title">Bachelor's Degree, Information Science</span>
+            <span class="t-meta">2023 – 2027</span>
+          </div>
+          <div class="t-sub">East West Institute of Technology</div>
+          <div class="t-score">CGPA 8.2</div>
+        </div>
+        <div class="t-item">
+          <div class="t-head">
+            <span class="t-title">Class 12 — Karnataka School Examination and Assessment Board</span>
+            <span class="t-meta">2023</span>
+          </div>
+          <div class="t-score">88.44%</div>
+        </div>
+        <div class="t-item">
+          <div class="t-head">
+            <span class="t-title">Class 10 — Karnataka Secondary Education Examination Board</span>
+            <span class="t-meta">2021</span>
+          </div>
+          <div class="t-score">89.5%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="eyebrow">say hello</div>
+      <h2 class="section-title">Get in touch</h2>
+      <div class="contact-card">
+        <p class="contact-lead">I'm actively looking for entry-level software development roles and internships. Feel free to reach out — I'd love to connect!</p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:raaghuno18@gmail.com"><span class="ic">✉</span> raaghuno18@gmail.com</a>
+          <a class="contact-link" href="tel:+918618234458"><span class="ic">☎</span> +91 86182 34458</a>
+          <a class="contact-link" href="https://github.com/raaghuno18-spec" target="_blank" rel="noopener"><span class="ic">⌥</span> GitHub</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/raghavendra-n-o/" target="_blank" rel="noopener"><span class="ic">in</span> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Designed &amp; built by <span>Raghavendra N O</span> · 2026
+</footer>
+
+</body>
+</html>
